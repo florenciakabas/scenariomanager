@@ -1,3 +1,4 @@
+import ipdb
 import numpy as np
 import pandas as pd
 
@@ -10,7 +11,10 @@ from functionbasedmodel import FunctionBasedModel
 
 
 # Set up local scenario manager
-manager = ScenarioManager(environment="local")
+manager = ScenarioManager(environment="simple")
+
+
+
 # manager = ScenarioManager(environment="databricks", storage_path="/path/to/delta")
 
 # Create data source
@@ -41,4 +45,5 @@ manager.save_to_delta()
 
 # Create and display dashboard
 dashboard = manager.create_dashboard("Model Comparison")
+ipdb.set_trace()
 dashboard.display()
