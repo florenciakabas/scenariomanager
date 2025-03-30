@@ -9,11 +9,8 @@ from scenariomanager import ScenarioManager
 from linearmodel import LinearRegressionModel
 from functionbasedmodel import FunctionBasedModel
 
-
 # Set up local scenario manager
 manager = ScenarioManager(environment="simple")
-
-
 
 # manager = ScenarioManager(environment="databricks", storage_path="/path/to/delta")
 
@@ -45,5 +42,4 @@ manager.save_to_delta()
 
 # Create and display dashboard
 dashboard = manager.create_dashboard("Model Comparison")
-ipdb.set_trace()
 dashboard.display()

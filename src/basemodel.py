@@ -11,6 +11,14 @@ class DataSource(Protocol):
         """Retrieve data for model input"""
         ...
 
+class CSVDataSource():
+    """A DataSource implementation for reading data from a CSV file"""
+    def __init__(self, file_path: str):
+        self.file_path = file_path
+
+    def get_data(self) -> pd.DataFrame:
+        return pd.read_csv(self.file_path)
+
 @runtime_checkable
 class Model(Protocol):
     def set_parameters(self, **kwargs) -> None:
@@ -28,6 +36,29 @@ class Model(Protocol):
     def get_parameters(self) -> Dict[str, Any]:
         """Return current parameter settings"""
         ...
+
+class NeuralNetworkModel:
+    """A neural network model that conforms to the Model Protocol"""
+    def __init__(self, layers: int, units: int):
+        self.layers = layers
+        self.units = units
+        self.parameters: dict[Any, Any] = {}
+
+    def set_parameters(self, **kwargs):
+        self.parameters.update(kwargs)
+
+    def fit(self, data: pd.DataFrame):
+        # Train the neural network
+        pass
+
+    def predict(self, data: pd.DataFrame) -> pd.DataFrame:
+        # Generate predictions
+        return data.assign(predicted_y=0)  # Dummy implementation
+
+    def get_parameters(self) -> Dict[str, Any]:
+        return self.parameters
+
+
 
 
 class BaseModel(ABC):

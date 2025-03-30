@@ -29,7 +29,8 @@ class ScenarioManager:
             delta_path=storage_path or "/path/to/delta"
         )
     
-    def register_scenario(self, name, model, data_source, parameters=None):
+
+    def register_scenario(self, name: str, model: Model, data_source: DataSource, parameters: Dict = {}) -> "ScenarioManager":
         """Register a new scenario with a model and data source"""
         self.scenarios[name] = {
             "model": model,
@@ -39,7 +40,7 @@ class ScenarioManager:
             "created_at": datetime.now()
         }
         return self
-    
+
     def run_scenario(self, name):
         """Run a specific scenario"""
         if name not in self.scenarios:

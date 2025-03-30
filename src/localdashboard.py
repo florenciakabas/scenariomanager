@@ -42,7 +42,7 @@ class LocalDashboard:
                 break
                 
             # Get data
-            data = self.storage_provider.read_table(viz["table"]).toPandas()
+            data = self.storage_provider.read_table(viz["table"])
             
             # Create visualization
             if viz["type"] == "line":
